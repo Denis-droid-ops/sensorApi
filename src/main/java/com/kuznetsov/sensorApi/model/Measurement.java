@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Range;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -17,19 +18,21 @@ public class Measurement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @NotEmpty(message = "Value should not be empty")
-    @Size(min = -100,max = 100,message = "Value should be between -100 and 100 numbers")
+
+    @Range(min = -100,max = 100,message = "Value should be between -100 and 100 numbers")
     @NotNull
     private Float value;
-    @NotEmpty(message = "Raining should not be empty")
-    @NotNull
+
+    @NotNull(message = "Raining should not be empty")
     private Boolean raining;
+
     @Column(name = "creating_date_time")
+    @NotNull
     private LocalDateTime creatingDateTime;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sensor_id")
-    @NotEmpty(message = "Sensor should not be empty")
-    @NotNull
+    @NotNull(message = "Sensor should not be empty")
     private Sensor sensor;
 
     public Integer getId() {

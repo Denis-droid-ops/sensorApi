@@ -1,6 +1,7 @@
 package com.kuznetsov.sensorApi.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -18,8 +19,9 @@ public class Sensor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @NotEmpty(message = "Name should not be empty!")
+
     @Size(min = 3,max = 30,message = "Name should be between 3 and 30 characters")
+    @NotBlank(message = "Name should not be empty!")
     @NotNull
     private String name;
     @OneToMany(mappedBy = "sensor",fetch = FetchType.LAZY)

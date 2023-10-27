@@ -1,5 +1,6 @@
 package com.kuznetsov.sensorApi.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -11,10 +12,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor //Jackson use by default behavior, to use only all args constructor(without lombok) use @JsonCreator
 public final class CreateSensorDto {
 
-    @NotEmpty(message = "Name should not be empty!")
+    @NotBlank(message = "Name should not be empty!")
     @Size(min = 3,max = 30,message = "Name should be between 3 and 30 characters")
     @NotNull
     private String name;

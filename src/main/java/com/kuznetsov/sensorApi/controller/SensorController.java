@@ -29,12 +29,8 @@ public class SensorController {
         this.sensorService = sensorService;
     }
 
-    @GetMapping("/hello")
-    public String hello(){
-        return "hello";
-    }
 
-    @PostMapping
+    @PostMapping("/registration")
     public ResponseEntity<HttpStatus> registerSensor(@RequestBody @Valid CreateSensorDto createSensorDto
                                                    , BindingResult bindingResult){
         sensorValidator.validate(createSensorDto,bindingResult);

@@ -17,10 +17,12 @@ import java.util.stream.Collectors;
 @Service
 @Transactional(readOnly = true)
 public class SensorService {
+    private final ModelMapper modelMapper;
     private final SensorRepository sensorRepository;
 
     @Autowired
-    public SensorService(SensorRepository sensorRepository) {
+    public SensorService(ModelMapper modelMapper, SensorRepository sensorRepository) {
+        this.modelMapper = modelMapper;
         this.sensorRepository = sensorRepository;
     }
 
@@ -44,21 +46,17 @@ public class SensorService {
     }
 
     private Sensor convertFromCreateDto(CreateSensorDto createSensorDto){
-        ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(createSensorDto,Sensor.class);
     }
 
     private Sensor convertFromReadDto(ReadSensorDto readSensorDto){
-        ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(readSensorDto,Sensor.class);
     }
 
     private CreateSensorDto convertToCreateDto(Sensor sensor){
-        ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(sensor,CreateSensorDto.class);
     }
     private ReadSensorDto convertToReadDto(Sensor sensor){
-        ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(sensor,ReadSensorDto.class);
     }
 }
