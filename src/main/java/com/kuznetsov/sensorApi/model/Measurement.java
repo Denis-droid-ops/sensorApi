@@ -11,6 +11,13 @@ import org.hibernate.validator.constraints.Range;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+
+@NamedEntityGraph(
+        name = "WithSensor",
+        attributeNodes = {
+            @NamedAttributeNode("sensor")
+        }
+)
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor

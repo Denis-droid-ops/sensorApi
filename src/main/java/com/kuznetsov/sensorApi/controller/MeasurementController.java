@@ -1,6 +1,7 @@
 package com.kuznetsov.sensorApi.controller;
 
 import com.kuznetsov.sensorApi.dto.CreateMeasurementDto;
+import com.kuznetsov.sensorApi.dto.ReadMeasurementDto;
 import com.kuznetsov.sensorApi.exception.MeasurementValidationException;
 import com.kuznetsov.sensorApi.service.MeasurementService;
 import com.kuznetsov.sensorApi.util.MeasurementErrorResponse;
@@ -39,6 +40,11 @@ public class MeasurementController {
         }
         measurementService.save(createMeasurementDto);
         return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    @GetMapping
+    public List<ReadMeasurementDto> findAllMeasurements(){
+        return measurementService.findAll();
     }
 
     @ExceptionHandler
