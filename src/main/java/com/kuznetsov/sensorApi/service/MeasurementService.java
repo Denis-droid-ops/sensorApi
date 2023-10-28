@@ -13,8 +13,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -44,6 +46,15 @@ public class MeasurementService {
     public List<ReadMeasurementDto> findAll(){
         return measurementRepository.findAll().stream().map(this::convertToReadDto)
                 .collect(Collectors.toList());
+    }
+
+    public Integer rainyDaysCount(){
+        Set<Integer> rainyDays = new HashSet<>();
+        measurementRepository.findAll().stream()
+                .filter(m-> m.getRaining())
+                .map(m->m.getCreatingDateTime().getDayOfYear())
+                .forEach(d->rainyDays.add(d));
+        return rainyDays.size();
     }
 
     private CreateMeasurementDto convertToCreateDto(Measurement measurement){

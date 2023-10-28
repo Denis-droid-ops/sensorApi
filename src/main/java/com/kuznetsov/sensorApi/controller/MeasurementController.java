@@ -47,6 +47,11 @@ public class MeasurementController {
         return measurementService.findAll();
     }
 
+    @GetMapping("/rainyDaysCount")
+    public Integer rainyDaysCount(){
+        return measurementService.rainyDaysCount();
+    }
+
     @ExceptionHandler
     public ResponseEntity<MeasurementErrorResponse> handleException(MeasurementValidationException ex){
         MeasurementErrorResponse measurementErrorResponse =
