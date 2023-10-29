@@ -1,12 +1,7 @@
 package com.kuznetsov.sensorApi.dto;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
-import com.kuznetsov.sensorApi.model.Sensor;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -14,6 +9,7 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public final class ReadMeasurementDto {
     private Integer id;
     private Float value;
